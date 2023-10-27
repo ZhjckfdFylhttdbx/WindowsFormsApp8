@@ -28,7 +28,7 @@ namespace WindowsFormsApp8
             Database database = new Database();
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
             DataTable dataTable = new DataTable();
-            string loginquarry = $"insert into[dbo].[Table] ([Фамилия],[Имя],[Отчество],[Группа],[Пол]) values( N'" + textBoxFamilia.Text+"',N' " +textBoxName.Text+"', N'"+textBoxOtchestvo.Text+"',N'"+textBoxGroup.Text+"', N'"+textBoxPol.Text+"')";
+            string loginquarry = $"insert into[dbo].[Table] ([Фамилия],[Имя],[Отчество],[Группа],[Пол]) values( N'"+textBoxFamilia.Text+"',N'"+textBoxName.Text+"', N'"+textBoxOtchestvo.Text+"',N'"+textBoxGroup.Text+"', N'"+textBoxPol.Text+"')";
             SqlCommand logincommand = new SqlCommand(loginquarry, database.GetConnection());
             sqlDataAdapter.SelectCommand = logincommand;
             sqlDataAdapter.Fill(dataTable);
@@ -58,17 +58,16 @@ namespace WindowsFormsApp8
             Database database1 = new Database();
             SqlDataAdapter sqlDataAdapter1 = new SqlDataAdapter();
             DataTable dataTable1 = new DataTable();
-            string loginquarry1 = $"select count(*) from [dbo].[Table] where [Фамилия] = " + textBoxFamiliaDel.Text + ",[Имя] =  " + textBoxNameDel.Text + ",[Отчество] = " + textBoxOtchestvoDel.Text + ",[Группа] = " + textBoxGroupDel.Text + ",[Пол] = " + textBoxPolDel.Text + "";
+            string loginquarry1 = $"select count(*) from [dbo].[Table] where [Фамилия] = '{ textBoxFamiliaDel.Text}' and [Имя] =  '{textBoxNameDel.Text}' and [Отчество] = '{textBoxOtchestvoDel.Text}' and [Группа] = '{textBoxGroupDel.Text}' and [Пол] = '{textBoxPolDel.Text}'";
             SqlCommand logincommand1 = new SqlCommand(loginquarry1, database1.GetConnection());
             sqlDataAdapter1.SelectCommand = logincommand1;
             sqlDataAdapter1.Fill(dataTable1);
-            MessageBox.Show("Успешноеудаление!", "Успех!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             if (Convert.ToInt32(dataTable1.Rows[0][0].ToString()) ==1)
             {
             Database database = new Database();
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
             DataTable dataTable = new DataTable();
-            string loginquarry = $"delete from [dbo].[Table] where [Фамилия] = " + textBoxFamiliaDel.Text + ",[Имя] = " + textBoxNameDel.Text + ",[Отчество] = " + textBoxOtchestvoDel.Text + ",[Группа] = " + textBoxGroupDel.Text + ",[Пол] = " + textBoxPolDel.Text + "";
+            string loginquarry = $"delete from [dbo].[Table] where [Фамилия] = '{textBoxFamiliaDel.Text}' and [Имя] =  '{textBoxNameDel.Text}' and [Отчество] = '{textBoxOtchestvoDel.Text}' and [Группа] = '{textBoxGroupDel.Text}' and [Пол] = '{textBoxPolDel.Text}'";
             SqlCommand logincommand = new SqlCommand(loginquarry, database.GetConnection());
             sqlDataAdapter.SelectCommand = logincommand;
             sqlDataAdapter.Fill(dataTable);
